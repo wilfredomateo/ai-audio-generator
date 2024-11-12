@@ -1,6 +1,19 @@
+import fs from "fs";
+import path from "path";
 import OpenAI from "openai";
+
 const openai = new OpenAI();
 
-const image = await openai.images.generate({ prompt: "A cute baby sea otter" });
+const speechFile = path.resolve("./speech.mp3");
 
-console.log(image.data[0].url);
+async function main() {
+  const mp3 = await openai.audio.speech.create({
+    model: "tts-1",
+    voice: "onyx",
+    input: "Today is a wonderful day to build something people love!",
+  });
+  console.log(speechFile);
+  const buffer = Buffer.from(await mp3.arrayBuffer());
+  await fs.promises.writeFile(speechFile, buffer);
+}
+main();
