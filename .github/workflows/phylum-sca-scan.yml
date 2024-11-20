@@ -1,4 +1,4 @@
-name: "Phylum Dep Scan"
+name: "Phylum Dependency Scan"
 on: pull_request
 jobs:
   analyze_deps:
