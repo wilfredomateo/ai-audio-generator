@@ -3,6 +3,7 @@ import fs from 'fs';
 import path from 'path';
 import OpenAI from 'openai';
 import dotenv from 'dotenv';
+import rateLimit from 'express-rate-limit';
 
 dotenv.config();
 
@@ -18,7 +19,12 @@ app.use(express.static(path.resolve('./')));
 
 app.use(express.json());
 
-app.post('/generate-speech', async (req, res) => {
+const limiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 100, // limit each IP to 100 requests per windowMs
+});
+
+app.post('/generate-speech', limiter, async (req, res) => {
   try {
     const userText = req.body.text;
     const mp3 = await openai.audio.speech.create({
