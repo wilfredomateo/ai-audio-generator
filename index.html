@@ -7,16 +7,37 @@
 </head>
 <body>
   <h1>Enter Text for Speech Synthesis</h1>
+  <h3>Limit your text to 4096 characters</h3>
   <form id="textForm">
     <textarea id="userText" rows="10" cols="50" placeholder="Enter your text here..."></textarea>
     <br>
+    <div id="charCount">0 / 4096 characters</div>
     <button type="submit">Generate Speech</button>
   </form>
   <script>
+    document.getElementById('userText').addEventListener('input', function() { 
+        const userText = this.value; 
+        const charCount = userText.length; 
+        const charCountDisplay = document.getElementById('charCount');
+
+        charCountDisplay.textContent = `${charCount} / 4096 characters`; 
+        
+        if (charCount > 4096) { 
+            charCountDisplay.style.color = 'red'; 
+        } else { 
+            charCountDisplay.style.color = 'black'; 
+        } 
+    });
+    
     document.getElementById('textForm').addEventListener('submit', async function(event) {
       event.preventDefault();
       const userText = document.getElementById('userText').value;
       
+      if (userText.length > 4096) {
+        alert('Text exceeds the maximum length of 4096 characters.');
+        return;
+      }  
+
       const response = await fetch('/generate-speech', {
         method: 'POST',
         headers: {
