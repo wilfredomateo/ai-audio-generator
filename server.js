@@ -23,14 +23,16 @@ app.post('/generate-speech', async (req, res) => {
     const userText = req.body.text;
     const mp3 = await openai.audio.speech.create({
       model: "tts-1",
-      voice: "onyx",
+      voice: "nova",
       input: userText,
     });
     
     const buffer = Buffer.from(await mp3.arrayBuffer());
-    await fs.promises.writeFile(speechFile, buffer);
-    
-    res.json({ filePath: speechFile });
+    const timestamp = Date.now();
+    const uniqueSpeechFile = path.resolve(`./speech_${timestamp}.mp3`);
+
+    await fs.promises.writeFile(uniqueSpeechFile, buffer);
+    res.json({ filePath: uniqueSpeechFile });
   } catch (error) {
     console.error("Error generating speech:", error);
     res.status(500).send("Error generating speech");

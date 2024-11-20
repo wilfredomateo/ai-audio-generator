@@ -7,7 +7,6 @@
 </head>
 <body>
   <h1>Enter Text for Speech Synthesis</h1>
-  <h3>Limit your text to 4096 characters</h3>
   <form id="textForm">
     <textarea id="userText" rows="10" cols="50" placeholder="Enter your text here..."></textarea>
     <br>
@@ -28,7 +27,7 @@
             charCountDisplay.style.color = 'black'; 
         } 
     });
-    
+
     document.getElementById('textForm').addEventListener('submit', async function(event) {
       event.preventDefault();
       const userText = document.getElementById('userText').value;
@@ -36,8 +35,8 @@
       if (userText.length > 4096) {
         alert('Text exceeds the maximum length of 4096 characters.');
         return;
-      }  
-
+      }
+      
       const response = await fetch('/generate-speech', {
         method: 'POST',
         headers: {
@@ -48,7 +47,9 @@
       
       const data = await response.json();
       alert('Speech file created! Path: ' + data.filePath);
+
     });
+
   </script>
 </body>
 </html>
