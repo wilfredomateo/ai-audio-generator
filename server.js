@@ -13,6 +13,9 @@ const openai = new OpenAI({
 
 const speechFile = path.resolve("./speech.mp3");
 
+// Serve index.html
+app.use(express.static(path.resolve('./')));
+
 app.use(express.json());
 
 app.post('/generate-speech', async (req, res) => {
