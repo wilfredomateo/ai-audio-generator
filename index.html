@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Text to Speech</title>
+</head>
+<body>
+  <h1>Enter Text for Speech Synthesis</h1>
+  <form id="textForm">
+    <textarea id="userText" rows="10" cols="50" placeholder="Enter your text here..."></textarea>
+    <br>
+    <button type="submit">Generate Speech</button>
+  </form>
+  <script>
+    document.getElementById('textForm').addEventListener('submit', async function(event) {
+      event.preventDefault();
+      const userText = document.getElementById('userText').value;
+      
+      const response = await fetch('/generate-speech', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ text: userText })
+      });
+      
+      const data = await response.json();
+      alert('Speech file created! Path: ' + data.filePath);
+    });
+  </script>
+</body>
+</html>
