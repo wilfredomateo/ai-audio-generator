@@ -19,4 +19,4 @@ jobs:
         uses: phylum-dev/phylum-analyze-pr-action@v2
         with:
           phylum_token: ${{ secrets.PHYLUM_TOKEN }}
-          cmd: phylum-ci --depfile package-lock.json
+          cmd: phylum-ci
