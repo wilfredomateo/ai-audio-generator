@@ -15,8 +15,5 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - name: Analyze dependencies
-        uses: phylum-dev/phylum-analyze-pr-action@v2
-        with:
-          phylum_token: ${{ secrets.PHYLUM_TOKEN }}
-          cmd: phylum-ci
+      - name: Phylum Analyze PR
+        uses: phylum-dev/phylum-analyze-pr-action@v2.2.0
