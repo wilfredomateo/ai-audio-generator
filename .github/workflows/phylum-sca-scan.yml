@@ -1,5 +1,8 @@
-name: "Phylum Dependency Scan"
+name: "security-sca-phylum"
+run-name: SCA Scan for Dependencies
+
 on: pull_request
+
 jobs:
   analyze_deps:
     name: Analyze dependencies with Phylum
