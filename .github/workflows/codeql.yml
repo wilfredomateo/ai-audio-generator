@@ -1,9 +1,9 @@
-name: "CodeQL Advanced"
-run-name: Scan Repo for Security 
+name: "security-sast-codeql"
+run-name: SAST Scan on Code Base 
 
 on:
   workflow_dispatch:
-
+  
 jobs:
   analyze:
     name: Analyze (${{ matrix.language }})
