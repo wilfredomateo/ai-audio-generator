@@ -1,4 +1,4 @@
-name: Snyk Security
+name: security-sca-snyk
 
 on:
   workflow_dispatch:
