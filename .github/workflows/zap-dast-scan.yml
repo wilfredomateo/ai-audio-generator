@@ -1,0 +1,15 @@
+name: "security-dast-zap"
+run-name: ZAP Scan on web application  
+
+on:
+  workflow_dispatch:
+
+jobs:
+  zap_scan:
+    runs-on: ubuntu-latest
+    name: Scan the webapplication
+    steps:
+      - name: ZAP Scan
+        uses: zaproxy/action-full-scan@v0.12.0
+        with:
+          target: 'https://localhost:6446/'
