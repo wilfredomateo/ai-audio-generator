@@ -1,5 +1,5 @@
-name: "security-sast-codeql"
-run-name: SAST Scan on Code Base 
+name: "security-dast-zap"
+run-name: ZAP Scan on web application  
 
 on:
   workflow_dispatch:
