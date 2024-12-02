@@ -1,8 +1,0 @@
-id: be983cc1-a860-423d-826c-8b13c7f92d7a
-name: sca-scan
-created_at: 2024-11-21T09:21:43.585955-06:00
-org_name: bank
-group_name: infosec
-depfiles:
-- path: ./package.json
-  type: npm
